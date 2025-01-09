@@ -1,15 +1,19 @@
 import '../styles/Game.sass'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
+import { setActiveMole } from '../redux/features/gameSlice';
 import Mole from './Mole';
 
 export default function Game() {
 
-    const [activeMole, setActiveMole] = useState<number | null>(null);
+    const activeMole = useSelector((state: RootState) => state.game.activeMole);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const interval = setInterval(() => {
             const randomMole = Math.floor(Math.random() * 12);
-            setActiveMole(randomMole);
+            dispatch(setActiveMole(randomMole));
         }, 1000)
 
         return () => clearInterval(interval);
