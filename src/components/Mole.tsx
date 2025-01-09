@@ -9,6 +9,7 @@ export default function Mole({id,isActive}: MoleProps) {
 
     const handleWhack = () => {
         if(isActive){
+            //Incrementing score when mole is whacked and setting active mole to null
             console.log(`Mole ${id} whacked!`);
             dispatch(incrementScore());
             dispatch(setActiveMole(null));

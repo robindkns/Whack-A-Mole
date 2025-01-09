@@ -8,29 +8,35 @@ import Board from './Board';
 
 export default function Game() {
 
+    //Get states from redux store
     const { activeMole,score,timeLeft,isGameOver } = useSelector((state: RootState) => state.game);
     const dispatch = useDispatch();
 
     useEffect(() => {
+        //Decrement timer
         const timer = setInterval(() => {
             dispatch(decrementTimer());
         }, 1000);
 
+        //Stop timer when game is over
         if (isGameOver) {
             clearInterval(timer);
         }
 
+        //Clean up timer
         return () => clearInterval(timer);
 
     }, [isGameOver, dispatch]);
 
     useEffect(() => {
+        //Generate random mole
         if(!isGameOver){
             const interval = setInterval(() => {
                 const randomMole = Math.floor(Math.random() * 12);
                 dispatch(setActiveMole(randomMole));
             }, 1000)
             
+            //Clean up interval
             return () => clearInterval(interval);
         }
         

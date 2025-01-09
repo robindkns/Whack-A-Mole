@@ -4,6 +4,7 @@ import { BoardProps } from "../typescript/BoardProps";
 
 export default function Board( {activeMole,score,timeLeft}:BoardProps ) {
     
+    //Formatting Timer in minutes and seconds
     function formatTime(timeLeft: number) {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
