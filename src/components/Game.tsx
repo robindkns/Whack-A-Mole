@@ -3,7 +3,7 @@ import '../styles/Game.sass'
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
-import { setActiveMole, decrementTimer } from '../redux/features/gameSlice';
+import { setActiveMole, decrementTimer, resetGame } from '../redux/features/gameSlice';
 import Mole from './Mole';
 
 export default function Game() {
@@ -39,13 +39,25 @@ export default function Game() {
     return(
         <>
             <div className='game'>
-                <h1 className='score'>Score : {score}</h1>
-                <h1 className='timer'>Time Left : {timeLeft}</h1>
-                <div className="board">
-                    {Array.from({length: 12}, (_, index) => (
-                        <Mole key={index} id={index} isActive={activeMole === index} />
-                    ))}
-                </div>
+                {!isGameOver &&
+                <>
+                    <h1 className='score'>Score : {score}</h1> 
+                    <h1 className='timer'>Time Left : {timeLeft}</h1>
+                    <div className="board">
+                        {Array.from({length: 12}, (_, index) => (
+                            <Mole key={index} id={index} isActive={activeMole === index} />
+                        ))}
+                    </div>
+                </>
+                }
+                {isGameOver &&
+                <>
+                    <div className='gameover-container'>
+                        <h1>Game Over</h1>
+                        <button onClick={() => dispatch(resetGame())}>Play Again</button>
+                    </div>
+                </>
+                }
             </div>
         </>
     )
