@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import '../styles/Mole.sass';
 import { MoleProps } from "../typescript/MoleType";
 import { useDispatch } from 'react-redux';
-import { setActiveMole } from '../redux/features/gameSlice';
+import { incrementScore, setActiveMole } from '../redux/features/gameSlice';
 
 export default function Mole({id,isActive}: MoleProps) {
 
@@ -13,6 +12,7 @@ export default function Mole({id,isActive}: MoleProps) {
         if(isActive){
             console.log(`Mole ${id} whacked!`);
             // setIsWhacked(true);
+            dispatch(incrementScore());
             dispatch(setActiveMole(null));
         }
     }
