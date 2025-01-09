@@ -1,4 +1,4 @@
-export type MoleType = {
+export interface MoleProps {
     id : number;
     isActive: boolean
 }

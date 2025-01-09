@@ -1,5 +1,6 @@
 import '../styles/Game.sass'
 import { useEffect, useState } from 'react';
+import Mole from './Mole';
 
 export default function Game() {
 
@@ -18,7 +19,9 @@ export default function Game() {
         <>
             <div className='game'>
                 <div className="board">
-                    {Array.from({length: 12}, (_, i) => <div key={i} className="hole" style={activeMole === i ? { backgroundColor: 'green' } : { backgroundColor: 'red'}}></div>)}
+                    {Array.from({length: 12}, (_, index) => (
+                        <Mole key={index} id={index} isActive={activeMole === index} />
+                    ))}
                 </div>
             </div>
         </>
