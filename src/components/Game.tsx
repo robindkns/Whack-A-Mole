@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { setActiveMole, decrementTimer, resetGame } from '../redux/features/gameSlice';
-import Mole from './Mole';
+import Board from './Board';
 
 export default function Game() {
 
@@ -40,15 +40,7 @@ export default function Game() {
         <>
             <div className='game'>
                 {!isGameOver &&
-                <>
-                    <h1 className='score'>Score : {score}</h1> 
-                    <h1 className='timer'>Time Left : {timeLeft}</h1>
-                    <div className="board">
-                        {Array.from({length: 12}, (_, index) => (
-                            <Mole key={index} id={index} isActive={activeMole === index} />
-                        ))}
-                    </div>
-                </>
+                    <Board activeMole={activeMole} score={score} timeLeft={timeLeft} />
                 }
                 {isGameOver &&
                 <>

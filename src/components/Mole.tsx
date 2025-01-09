@@ -1,5 +1,5 @@
 import '../styles/Mole.sass';
-import { MoleProps } from "../typescript/MoleType";
+import { MoleProps } from "../typescript/MoleProps";
 import { useDispatch } from 'react-redux';
 import { incrementScore, setActiveMole } from '../redux/features/gameSlice';
 
