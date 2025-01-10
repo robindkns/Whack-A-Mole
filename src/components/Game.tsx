@@ -21,15 +21,12 @@ export default function Game() {
         const timer = setInterval(() => {
             dispatch(decrementTimer());
         }, 1000);
-
         // Stop timer when game is over
         if (isGameOver) {
             clearInterval(timer);
         }
-
         // Clean up timer
         return () => clearInterval(timer);
-
     }, [isGameOver, dispatch]);
 
     useEffect(() => {
@@ -39,7 +36,6 @@ export default function Game() {
                 const randomMole = Math.floor(Math.random() * 12);
                 dispatch(setActiveMole(randomMole));
             }, 1000)
-            
             // Clean up interval
             return () => clearInterval(interval);
         }

@@ -14,7 +14,6 @@ export default function EndingMenu() {
     const submitScore = async (name: string, score: number) => {
         try {
             const response = await axios.post('/api/leaderboard', { name, score });
-
             if (response.status === 201) {
                 setShowLeaderboard(true);
             }
