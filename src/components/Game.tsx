@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import '../styles/Game.sass'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { setActiveMole, decrementTimer, resetGame } from '../redux/features/gameSlice';
 import Board from './Board';
 import Leaderboard from './Leaderboard';
+import HomeMenu from './HomeMenu';
 
 export default function Game() {
+
+    const [gameStarted, setGameStarted] = useState(false);
 
     // Get states from redux store
     const { activeMole,score,timeLeft,isGameOver } = useSelector((state: RootState) => state.game);
@@ -41,15 +44,21 @@ export default function Game() {
             return () => clearInterval(interval);
         }
         
-    }, []);
+    }, [gameStarted, isGameOver, dispatch]);
+
+    console.log(isGameOver,gameStarted);
+    
 
     return(
         <>
             <div className='game'>
-                {!isGameOver &&
+                {!gameStarted && <HomeMenu setGameStarted={setGameStarted} /> }
+                
+                {!isGameOver && gameStarted &&
                     <Board activeMole={activeMole} score={score} timeLeft={timeLeft} />
                 }
-                {isGameOver &&
+
+                {isGameOver && gameStarted &&
                 <>
                     <div className='gameover-container'>
                         <Leaderboard />

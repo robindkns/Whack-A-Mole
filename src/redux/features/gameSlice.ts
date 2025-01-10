@@ -6,7 +6,7 @@ const gameSlice = createSlice({
         activeMole: null,
         score : 0,
         timeLeft : 5,
-        isGameOver : false
+        isGameOver : true
     },
     reducers: {
         setActiveMole: (state, action) => {
@@ -26,7 +26,7 @@ const gameSlice = createSlice({
         resetGame: (state) => {
             state.activeMole = null;
             state.score = 0;
-            state.timeLeft = 120;
+            state.timeLeft = 5;
             state.isGameOver = false;
         }
     },
