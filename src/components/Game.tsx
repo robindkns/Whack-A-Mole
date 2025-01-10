@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { setActiveMole, decrementTimer, resetGame } from '../redux/features/gameSlice';
 import Board from './Board';
+import Leaderboard from './Leaderboard';
 
 export default function Game() {
 
@@ -51,6 +52,7 @@ export default function Game() {
                 {isGameOver &&
                 <>
                     <div className='gameover-container'>
+                        <Leaderboard />
                         <h1>Game Over</h1>
                         <button onClick={() => dispatch(resetGame())}>Play Again</button>
                     </div>

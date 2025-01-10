@@ -16,6 +16,8 @@ let leaderboard: { id: number; name: string; score: number }[] = [
     { name: "PIE", score: 68, id: 10 }
 ]; 
 
+leaderboard.sort((a, b) => b.score - a.score);
+
 // Answer for GET method 
 mock.onGet('/api/leaderboard').reply(200, leaderboard);
 
