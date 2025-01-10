@@ -1,32 +1,27 @@
 import axios from "axios"
 import '../styles/Leaderboard.sass'
 import { useState,useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { resetGame } from "../redux/features/gameSlice";
 
 export default function Leaderboard() {
 
     const [leaderboard, setLeaderboard] = useState<any[]>([]);
-    const [playerName, setPlayerName] = useState("");
+    const dispatch = useDispatch();
 
-    useEffect(() => {
+    const fetchLeaderboard = () => {
         axios.get('/api/leaderboard')
             .then(response => {
                 setLeaderboard(response.data);
-                console.log(response.data);
+                console.log('Updated leaderboard:', response.data);
             })
             .catch(error => console.error('Error when loading leaderboard datas.', error));
-    }, []);
-
-    const submitScore = async (name: string, score: number) => {
-        try {
-            const response = await axios.post('/api/leaderboard', { name, score });
-
-            if (response.status === 201) {
-                setLeaderboard(prevLeaderboard => [...prevLeaderboard, response.data].slice(0, 10));
-            }
-        } catch (error: any) {
-            alert(error.response?.data?.error || 'Unknown error when submitting score.');
-        }
     };
+
+    useEffect(() => {
+        fetchLeaderboard(); // Récupérer les données du leaderboard au montage du composant
+    }, []); // Le tableau de dépendances est vide pour charger une seule fois au montage
+
 
     return(
         <>
@@ -51,6 +46,7 @@ export default function Leaderboard() {
                     </tbody>
                 </table>
             </div>
+            <button onClick={() => dispatch(resetGame())}>Play Again</button>
         </>
     )
 };

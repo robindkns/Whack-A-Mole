@@ -26,7 +26,7 @@ mock.onPost('/api/leaderboard').reply((config) => {
     const { name, score } = JSON.parse(config.data);
     
     if (!/^[A-Z]{3}$/.test(name)) {
-        return [400, { error: 'Username MUST contain ONLY 3 letters !' }];
+        return [400, { error: 'Username MUST contain ONLY 3 letters AND ONLY captital letters!' }];
     }
 
     const newEntry = {
@@ -38,6 +38,8 @@ mock.onPost('/api/leaderboard').reply((config) => {
     leaderboard = [...leaderboard, newEntry]
         .sort((a, b) => b.score - a.score) // Sort by score
         .slice(0, 10); // Keep only the top 10
+
+    console.log('Updated leaderboard:', leaderboard);
 
     return [201, newEntry];
 });
