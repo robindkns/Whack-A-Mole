@@ -6,9 +6,9 @@ import { addScore } from '../redux/features/leaderboardSlice';
 const mock = new MockAdapter(axios);
 
 // Answer for GET method 
-mock.onGet('/api/leaderboard').reply((config) => {
+mock.onGet('/api/leaderboard').reply(() => {
     
-    const leaderboard = store.getState().leaderboard.data;
+    const leaderboard = [...store.getState().leaderboard.data];
     leaderboard.sort((a, b) => b.score - a.score);
 
     console.log('leaderboard from mock: ', leaderboard);
