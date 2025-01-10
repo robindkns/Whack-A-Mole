@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import gameSlice from "./features/gameSlice";
+import leaderboardSlice from "./features/leaderboardSlice";
 
 const store = configureStore({
     reducer: {
-        game : gameSlice
+        game : gameSlice,
+        leaderboard : leaderboardSlice
     }
 });
 

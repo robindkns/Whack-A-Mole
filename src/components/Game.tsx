@@ -46,9 +46,6 @@ export default function Game() {
         
     }, [gameStarted, isGameOver, dispatch]);
 
-    console.log(isGameOver,gameStarted);
-    
-
     return(
         <>
             <div className='game'>

@@ -9,19 +9,14 @@ export default function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState<any[]>([]);
     const dispatch = useDispatch();
 
-    const fetchLeaderboard = () => {
+    useEffect(() => {
         axios.get('/api/leaderboard')
             .then(response => {
                 setLeaderboard(response.data);
-                console.log('Updated leaderboard:', response.data);
+                console.log(response.data);
             })
             .catch(error => console.error('Error when loading leaderboard datas.', error));
-    };
-
-    useEffect(() => {
-        fetchLeaderboard(); // Récupérer les données du leaderboard au montage du composant
-    }, []); // Le tableau de dépendances est vide pour charger une seule fois au montage
-
+    }, []);
 
     return(
         <>
