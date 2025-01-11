@@ -7,6 +7,9 @@ import { setActiveMole, decrementTimer } from '../redux/features/gameSlice';
 import Board from './Board';
 import HomeMenu from './HomeMenu';
 import EndingMenu from './EndingMenu';
+import { FaVolumeHigh } from "react-icons/fa6";
+import { FaVolumeXmark } from "react-icons/fa6";
+
 
 export default function Game() {
 
@@ -95,16 +98,7 @@ export default function Game() {
                 </>
                 }
                 <div className="volume-control">
-                    <label htmlFor="volume-slider">Volume: {Math.round(volume * 100)}%</label>
-                    <input
-                        id="volume-slider"
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={volume}
-                        onChange={(e) => setVolume(Number(e.target.value))}
-                    />
+                    <label htmlFor="volume-slider">{volume === 0 ? <FaVolumeXmark onClick={() => setVolume(0.10)} /> : <FaVolumeHigh onClick={() => setVolume(0)} />}</label>
                 </div>
             </div>
         </>

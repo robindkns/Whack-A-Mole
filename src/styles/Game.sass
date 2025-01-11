@@ -1,3 +1,5 @@
+@import '../styles/variables.sass'
+    
 .game
     height: 80%
     width: 75%
@@ -17,3 +19,13 @@
     position: absolute
     bottom: 5%
     right: 5%
+    display: flex
+    label
+        display: flex
+        align-items: center
+        gap: 10px
+        svg
+            color: $basic-black
+            font-size: 4rem
+            &:hover
+                cursor: pointer
