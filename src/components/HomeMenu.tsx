@@ -5,7 +5,7 @@ import { HomeMenuProps } from '../typescript/HomeMenuProps';
 import { useState } from 'react';
 import Countdown from './Countdown';
 
-export default function HomeMenu( {setGameStarted} : HomeMenuProps ) {
+export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef} : HomeMenuProps ) {
 
     const dispatch = useDispatch();
     const [isDisabled, setIsDisabled] = useState(true);
@@ -22,6 +22,14 @@ export default function HomeMenu( {setGameStarted} : HomeMenuProps ) {
     }
 
     function startGame() {
+        // Arrêter la musique d'ouverture
+        if (openingMusicRef.current) {
+            openingMusicRef.current.pause();
+        }
+                // Jouer la musique du jeu
+        if (gameMusicRef.current) {
+            gameMusicRef.current.play();
+        }
         setIsStarted(true);
         setTimeout(() => {
             setGameStarted(true);
