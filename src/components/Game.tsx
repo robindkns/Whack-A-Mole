@@ -18,6 +18,10 @@ export default function Game() {
     const { activeMole,score,timeLeft,isGameOver } = useSelector((state: RootState) => state.game);
     const dispatch = useDispatch();
 
+    // Mode related variables
+    const nbMoles = useSelector((state: RootState) => state.difficulty.moles);
+    const timeBetween = useSelector((state: RootState) => state.difficulty.timeBetween);
+
     // Music related variables
     const urlClickSound : string = require('../assets/sounds/SelectSound.mp3');
     const urlTitleTheme: string = require('../assets/sounds/TitleTheme.mp3');
@@ -75,9 +79,9 @@ export default function Game() {
         // Generate random mole
         if(!isGameOver){
             const interval = setInterval(() => {
-                const randomMole = Math.floor(Math.random() * 12);
+                const randomMole = Math.floor(Math.random() * nbMoles);
                 dispatch(setActiveMole(randomMole));
-            }, 1000)
+            }, timeBetween);
             // Clean up interval
             return () => clearInterval(interval);
         }

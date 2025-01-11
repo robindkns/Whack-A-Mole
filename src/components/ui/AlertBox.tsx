@@ -1,9 +1,13 @@
-export default function AlertBox( { message,done }: { message: string, done: boolean } ) {
+import "../../styles/AlertBox.sass";
+
+export default function AlertBox( { message }: { message: string } ) {
     return (
         <>
-            {!done && 
-                <div className="alert-box">
-                    <p>{message}</p>
+            {   
+                <div>
+                    <div className="alert-box">
+                        <p>{message}</p>
+                    </div>
                 </div>
             }
         </>

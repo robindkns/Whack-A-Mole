@@ -11,6 +11,13 @@ const difficultySlice = createSlice({
     reducers: {
         changeMode: (state, action) => {
             state.mode = action.payload
+            if (state.mode === 'normal') {
+                state.moles = 12;
+                state.timeBetween = 1000;
+            } else if (state.mode === 'hard') {
+                state.moles = 24;
+                state.timeBetween = 700;
+            }
         },
         unlockingMode: (state) => {
             state.unlocked = true

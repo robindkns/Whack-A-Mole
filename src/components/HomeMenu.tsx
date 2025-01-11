@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Countdown from './Countdown';
 import { changeMode } from '../redux/features/difficultySlice';
 import { RootState } from '../redux/store';
+import AlertBox from './ui/AlertBox';
 
 export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,clickSoundRef} : HomeMenuProps ) {
 
@@ -15,6 +16,8 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
     const [isLoading, setIsLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
+    const [alertON, setAlertON] = useState(false);
+    const [alertReason, setAlertReason] = useState('');
 
     function loading(mode: string) {
         setIsLoading(true);
@@ -45,18 +48,29 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
         }, 4000)
     }
 
-    console.log("unlocked: ", unlocked);
+    function alertMessage(message: string) {
+        if (clickSoundRef.current) {
+            clickSoundRef.current.play();
+        }
+        setAlertON(true);
+        setAlertReason(message);
+        setTimeout(() => {
+            setAlertON(false);
+            setAlertReason('');
+        },5000)
+    }
 
     return(
         <>  
+            {alertON && <AlertBox message={alertReason} />}
             <div className="home-menu">
             {!isStarted ?
             <>
                 <h3>Welcome to</h3>
                 <h1>WHACK A MOLE !</h1>
                 <div className="select-mode-container">
-                    <button className='unlocked' style={difficultyMode === 'normal' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}} onClick={difficultyMode === 'normal' ? () => alert('Already selected') : () => loading('normal') }>NORMAL MODE</button>
-                    <button className={!unlocked ? 'locked' : 'unlocked'} style={difficultyMode === 'hard' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}}  onClick={difficultyMode === 'hard' ? () => alert('Already selected') : () => loading('hard') }>HARD MODE</button>
+                    <button className='unlocked' style={difficultyMode === 'normal' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}} onClick={difficultyMode === 'normal' ? () => alertMessage('Difficulty mode already selected') : () => loading('normal') } disabled={isLoading}>NORMAL MODE</button>
+                    <button className={!unlocked ? 'locked' : 'unlocked'} style={difficultyMode === 'hard' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}}  onClick={difficultyMode === 'hard' ? () => alertMessage('Difficulty mode already selected') : () => loading('hard') } disabled={!unlocked || isLoading}>HARD MODE</button>
                 </div>
                 {isLoading && 
                 <>

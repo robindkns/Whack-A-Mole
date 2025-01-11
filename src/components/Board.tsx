@@ -1,9 +1,14 @@
 import '../styles/Board.sass';
 import Mole from "./Mole";
 import { BoardProps } from "../typescript/BoardProps";
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 export default function Board( {activeMole,score,timeLeft}:BoardProps ) {
     
+    const nbMoles = useSelector((state: RootState) => state.difficulty.moles);
+    const mode = useSelector((state: RootState) => state.difficulty.mode);
+
     //Formatting Timer in minutes and seconds
     function formatTime(timeLeft: number) {
         const minutes = Math.floor(timeLeft / 60);
@@ -16,8 +21,8 @@ export default function Board( {activeMole,score,timeLeft}:BoardProps ) {
             <div className="board-container">
                 <h1 className="score">Score : {score}</h1>
                 <h1 className="timer">Time Left : {formatTime(timeLeft)}</h1>
-                <div className="board">
-                    {Array.from({ length: 12 }, (_, index) => (
+                <div className={mode === "normal" ? "board" : "board-hard"}>
+                    {Array.from({ length: nbMoles }, (_, index) => (
                         <Mole key={index} id={index} isActive={activeMole === index} />
                     ))}
                 </div>

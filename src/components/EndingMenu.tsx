@@ -18,6 +18,20 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef 
     const [fadeOut, setFadeOut] = useState(false);
     const hardModeUnlocked = useSelector((state: RootState) => state.difficulty.unlocked);
     const dispatch = useDispatch();
+    const [alertON, setAlertON] = useState(false);
+    const [alertReason, setAlertReason] = useState('');
+
+    function alertMessage(message: string) {
+        if (clickSoundRef.current) {
+            clickSoundRef.current.play();
+        }
+        setAlertON(true);
+        setAlertReason(message);
+        setTimeout(() => {
+            setAlertON(false);
+            setAlertReason('');
+        },5000)
+    }
 
     const submitScore = async (name: string, score: number) => {
         if (clickSoundRef.current) {
@@ -32,7 +46,7 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef 
                 },500)
             }
         } catch (error: any) {
-            alert(error.response?.data?.error || 'Unknown error when submitting score.');
+            alertMessage(error.response?.data?.error || 'Unknown error when submitting score.');
         }
     };
 
@@ -43,14 +57,16 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef 
     useEffect(() => {
         if (!hardModeUnlocked){
             dispatch(unlockingMode());
+            alertMessage('You have unlocked Hard Mode ! Go back to the title screen to try it !');
         }
-    }, [hardModeUnlocked]);
+    }, []);
+
 
     return (
         <>
         {!showLeaderboard && 
             <>  
-                {hardModeUnlocked && <AlertBox done={hardModeUnlocked} message="You have unlocked hard mode ! Go back to the title screen to try it !"/>}
+                {alertON && <AlertBox message={alertReason}/>}
                 <div className="ending-container" style={ fadeOut ? {animation : "fade-out-left 0.5s ease-in-out forwards"} : {}}>
                     <h1 id='ending-title'>Congratulations !</h1>
                     <h3>Your score is {score} points !</h3>
