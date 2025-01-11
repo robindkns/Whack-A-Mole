@@ -6,32 +6,48 @@
     height: 100%
     flex-direction: column
     align-items: center
-    background-color: #00000014
     border-radius: 100px
+    animation: fade-in-left 0.5s forwards ease-out
     h1
-        margin-top: 5rem
+        margin-top: 4rem
         font-size: 5.5rem
         color: $basic-black
     h3
         margin-top: 0.5rem
         font-size: 3rem
-        color: #c78c1d
+        color: $basic-gold
+    button
+        margin-top: 1rem
+        font-size: 3rem
+        color: $basic-green
+        background-color: transparent
+        border: none
+        cursor: pointer
+        transition: 0.3s
+        &:hover
+            scale: 1.1
 
 .highscores-container
     display: flex
     flex-direction: column
     width: 40%
-    height: 100%
+    gap: 0.2rem
     margin-top: 1rem
     font-size: 2rem
     font-weight: bold
 
-.score
+.highscore
     display: flex
     justify-content: space-between
 
-.score-header
+.highscore-header
     display: flex
     width: 50%
     span
         width: 20%
+
+@keyframes fade-in-left
+    0%
+        transform: translateX(100%)
+    100%
+        transform: translateX(0)

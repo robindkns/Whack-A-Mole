@@ -34,8 +34,8 @@ export default function Leaderboard() {
                     <h3>Hall Of Fame</h3>
                     <div className="highscores-container">
                         {leaderboard.map((score, index) => (
-                            <div className="score" key={index} style={index === 0 ? { color: "#c78c1d" } : { color: "#363434" }}>
-                                <div className="score-header">
+                            <div className="highscore" key={index} style={index === 0 ? { color: "#c78c1d" } : { color: "#363434" }}>
+                                <div className="highscore-header">
                                     <span>{index + 1}</span>
                                     <span>{score.name}</span>
                                 </div>

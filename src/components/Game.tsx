@@ -46,7 +46,7 @@ export default function Game() {
     return(
         <>
             <div className='game'>
-                {/* {!gameStarted && 
+                {!gameStarted && 
                     <HomeMenu setGameStarted={setGameStarted} /> 
                 }
                 {!isGameOver && gameStarted &&
@@ -56,8 +56,7 @@ export default function Game() {
                 <>
                     <EndingMenu />
                 </>
-                } */}
-                <EndingMenu />
+                }
                 {/* <Leaderboard /> */}
             </div>
         </>

@@ -11,6 +11,7 @@ export default function EndingMenu() {
     const { score } = useSelector((state: RootState) => state.game);
     const [playerName, setPlayerName] = useState('');
     const [showLeaderboard, setShowLeaderboard] = useState(false);
+    const [fadeOut, setFadeOut] = useState(false);
 
     console.log("actual name : " + playerName);
 
@@ -18,7 +19,10 @@ export default function EndingMenu() {
         try {
             const response = await axios.post('/api/leaderboard', { name, score });
             if (response.status === 201) {
-                setShowLeaderboard(true);
+                setFadeOut(true);
+                setTimeout(() => {
+                    setShowLeaderboard(true);
+                },500)
             }
         } catch (error: any) {
             alert(error.response?.data?.error || 'Unknown error when submitting score.');
@@ -31,20 +35,20 @@ export default function EndingMenu() {
 
     return (
         <>
-        <div className="ending-container">
-            {!showLeaderboard && 
-                <>
-                    <h1 id='ending-title'>Congratulations !</h1>
-                    <h3>Your score is {score} points !</h3>
-                    <p>Please enter your name :</p>
-                    <NameInput playerName={playerName} setPlayerName={handlePlayerNameChange} />
-                    <button id='submit-button' onClick={() => submitScore(playerName, score)}>Submit</button>
-                </>
-            }
-            {showLeaderboard &&
-                <Leaderboard />
-            }
+        {!showLeaderboard && 
+        <div className="ending-container" style={ fadeOut ? {animation : "fade-out-left 0.5s ease-in-out forwards"} : {}}>
+            <>
+                <h1 id='ending-title'>Congratulations !</h1>
+                <h3>Your score is {score} points !</h3>
+                <p>Please enter your name :</p>
+                <NameInput playerName={playerName} setPlayerName={handlePlayerNameChange} />
+                <button id='submit-button' onClick={() => submitScore(playerName, score)}>Submit</button>
+            </>
         </div>
+        }
+        {showLeaderboard &&
+            <Leaderboard />
+        }
         </>
     );
 }

@@ -6,6 +6,7 @@
     align-items: center
     width: 100%
     height: 100%
+    animation: appearZoom 0.5s forwards ease-out
     h3
         margin-top: 0.5rem
         font-size: 2.5rem
@@ -18,7 +19,7 @@
 
 #ending-title
     margin-top: 5rem
-    color: #c78c1d
+    color: $basic-gold
     font-size: 5.5rem
 
 #submit-button
@@ -32,3 +33,15 @@
     margin-top: 7rem
     &:hover
         transform: scale(1.1)
+
+@keyframes appearZoom
+    0%
+        scale: 0
+    100%
+        scale: 1
+
+@keyframes fade-out-left
+    0%
+        transform: translateX(0)
+    100%
+        transform: translateX(-100%)
