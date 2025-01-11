@@ -4,12 +4,15 @@ import Leaderboard from "./Leaderboard";
 import { RootState } from "../redux/store";
 import { useState } from 'react';
 import axios from 'axios';
+import NameInput from './InputName';
 
 export default function EndingMenu() {
 
     const { score } = useSelector((state: RootState) => state.game);
-    const [playerName, setPlayerName] = useState("");
+    const [playerName, setPlayerName] = useState('');
     const [showLeaderboard, setShowLeaderboard] = useState(false);
+
+    console.log("actual name : " + playerName);
 
     const submitScore = async (name: string, score: number) => {
         try {
@@ -22,6 +25,10 @@ export default function EndingMenu() {
         }
     };
 
+    const handlePlayerNameChange = (name: string) => {
+        setPlayerName(name); // Mettez à jour le nom du joueur à chaque changement
+    };
+
     return (
         <>
         <div className="ending-container">
@@ -29,10 +36,8 @@ export default function EndingMenu() {
                 <>
                     <h1>Congratulations !</h1>
                     <h3>Your score is {score} points !</h3>
-                    <div className='player-name'>
-                        <span>Name : </span>
-                        <input type="text" onChange={(e) => setPlayerName(e.target.value)} />
-                    </div>
+                    <p>Please enter your name :</p>
+                    <NameInput playerName={playerName} setPlayerName={handlePlayerNameChange} />
                     <button id='submit-button' onClick={() => submitScore(playerName, score)}>Submit</button>
                 </>
             }

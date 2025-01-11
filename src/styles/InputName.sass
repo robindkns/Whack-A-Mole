@@ -1,0 +1,32 @@
+@import '../styles/variables.sass'
+    
+.name-input-container
+    display: flex
+    justify-content: center
+    gap: 10px
+    margin-top: 2rem
+
+
+.name-input
+    width: 3rem
+    text-align: center
+    font-size: 3rem
+    font-weight: bold
+    border: none
+    color: $basic-black
+    border-bottom: 3px solid $basic-black
+    background: transparent
+    outline: none
+    transition: border-color 0.3s ease
+
+
+.name-input:focus
+    border-bottom: 2px solid #c78c1d
+
+.name-input::placeholder
+    color: transparent
+
+
+.name-input:focus::placeholder
+    color: $basic-black
+

@@ -14,7 +14,7 @@ const leaderboardSlice = createSlice({
             { id: 8, name: "SEB", score: 34 },
             { id: 9, name: "GIL", score: 101 },
             { id: 10, name: "PIE", score: 68 }
-        ],
+        ]
     },
     reducers: {
         addScore: (state, action: PayloadAction<{ id: number; name: string; score: number }>) => {
