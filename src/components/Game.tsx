@@ -56,6 +56,9 @@ export default function Game() {
             if (gameMusicRef.current) {
                 gameMusicRef.current.pause();
             }
+            if (openingMusicRef.current) {
+                openingMusicRef.current.play();
+            }
         }
         // Clean up timer
         return () => clearInterval(timer);
@@ -77,8 +80,8 @@ export default function Game() {
     return(
         <>
             <div className='game'>
-                <audio ref={openingMusicRef} src={urlTitleTheme} loop volume={0.5} />
-                <audio ref={gameMusicRef} src={urlGameMusic} loop volume={0.5} />
+                <audio ref={openingMusicRef} src={urlTitleTheme} loop />
+                <audio ref={gameMusicRef} src={urlGameMusic} loop />
 
                 {!gameStarted && 
                     <HomeMenu setGameStarted={setGameStarted} gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} /> 
@@ -88,7 +91,7 @@ export default function Game() {
                 }
                 {isGameOver && gameStarted &&
                 <>
-                    <EndingMenu />
+                    <EndingMenu gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} />
                 </>
                 }
                 <div className="volume-control">

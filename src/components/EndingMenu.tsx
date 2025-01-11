@@ -5,8 +5,9 @@ import { RootState } from "../redux/store";
 import { useState } from 'react';
 import axios from 'axios';
 import NameInput from './InputName';
+import { MusicProps } from '../typescript/MusicProps';
 
-export default function EndingMenu() {
+export default function EndingMenu({ gameMusicRef,openingMusicRef } : MusicProps) {
 
     const { score } = useSelector((state: RootState) => state.game);
     const [playerName, setPlayerName] = useState('');
@@ -47,7 +48,7 @@ export default function EndingMenu() {
         </div>
         }
         {showLeaderboard &&
-            <Leaderboard />
+            <Leaderboard gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} />
         }
         </>
     );
