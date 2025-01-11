@@ -7,6 +7,7 @@
     height: 100%
     color: $basic-black
     font-size: 3.5rem
+    animation: fade-in-top 0.5s forwards ease-out
     h3
         margin-top: 3rem
 
@@ -82,3 +83,9 @@
         width: 0%
     100%
         width: 100%
+
+@keyframes fade-in-top
+    0%
+        transform: translateY(-100%)
+    100%
+        transform: translateY(0)
