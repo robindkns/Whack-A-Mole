@@ -69,7 +69,7 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
                         </p>
                     </div>
                 </>}
-                {isLoaded && <button id='start-button' onClick={startGame}>START</button>}
+                {isLoaded && !isLoading && <button id='start-button' onClick={startGame}>START</button>}
                 </>: <Countdown />}
             </div>
         </>
