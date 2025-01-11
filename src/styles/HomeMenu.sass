@@ -1,5 +1,85 @@
+@import '../styles/variables.sass'
+
 .home-menu
     display: flex
     flex-direction: column
-    justify-content: center
     align-items: center
+    height: 100%
+    color: $basic-black
+    font-size: 3.5rem
+    h3
+        margin-top: 3rem
+
+.select-mode-container
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    width: 75%
+    margin-top: 3rem
+    button
+        width: 15rem
+        height: 4rem
+        font-size: 1.8rem
+        border: 2px solid #00000043
+        border-radius: 7px
+        transition: 0.3s
+    
+#normal-mode
+    cursor: pointer
+    background-color: #fbfcb948
+    color: $basic-black
+    &:hover
+        background-color: #fbfcb9
+
+#hard-mode-disabled
+    cursor: not-allowed
+    opacity: 0.9
+    background-color: #fbfcb948
+    color: #00000043
+
+.loader-container
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 50%
+    padding-top: 3rem
+
+.loader
+    width: 100%
+    height: 15px
+    border: 4px solid $basic-black
+    border-radius: 7px
+    div
+        width: 0%
+        height: 100%
+        background-color: $basic-black
+        animation: loading 3s linear forwards
+
+#dots
+    animation: blinking 1s infinite
+
+#start-button
+    margin-top: 3rem
+    font-size: 4rem
+    cursor: pointer
+    border: none
+    background-color: transparent
+    transition: 0.3s
+    color: #16653a
+    &:hover
+        transform: scale(1.1)
+
+
+@keyframes blinking
+    0%
+        opacity: 0
+    50%
+        opacity: 1
+    100%
+        opacity: 0
+
+@keyframes loading
+    0%
+        width: 0%
+    100%
+        width: 100%
