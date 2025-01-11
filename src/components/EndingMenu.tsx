@@ -34,7 +34,7 @@ export default function EndingMenu() {
         <div className="ending-container">
             {!showLeaderboard && 
                 <>
-                    <h1>Congratulations !</h1>
+                    <h1 id='ending-title'>Congratulations !</h1>
                     <h3>Your score is {score} points !</h3>
                     <p>Please enter your name :</p>
                     <NameInput playerName={playerName} setPlayerName={handlePlayerNameChange} />
