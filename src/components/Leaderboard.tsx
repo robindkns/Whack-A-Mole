@@ -4,9 +4,9 @@ import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetGame } from "../redux/features/gameSlice";
 import Countdown from "./Countdown";
-import { MusicProps } from "../typescript/MusicProps";
+import { EndGameProps } from "../typescript/EndGameProps";
 
-export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef} : MusicProps) {
+export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef} : EndGameProps) {
 
     const [leaderboard, setLeaderboard] = useState<any[]>([]);
     const [isStarted, setIsStarted] = useState(false);
@@ -39,6 +39,7 @@ export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef
     return(
         <>
             {!isStarted ? <>
+                
                 <div className="leaderboard">
                     <h1>WHACK A MOLE !</h1>
                     <h3>Hall Of Fame</h3>

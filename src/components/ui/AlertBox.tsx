@@ -1,7 +1,11 @@
-export default function AlertBox( { message }: { message: string }) {
+export default function AlertBox( { message,done }: { message: string, done: boolean } ) {
     return (
-        <div className="alert-box">
-            <p>{message}</p>
-        </div>
+        <>
+            {!done && 
+                <div className="alert-box">
+                    <p>{message}</p>
+                </div>
+            }
+        </>
     );
 };

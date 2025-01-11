@@ -11,7 +11,7 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
 
     const dispatch = useDispatch();
     const difficultyMode = useSelector((state: RootState) => state.difficulty.mode);
-    const [isDisabled, setIsDisabled] = useState(true);
+    const unlocked  = useSelector((state: RootState) => state.difficulty.unlocked);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
@@ -45,6 +45,8 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
         }, 4000)
     }
 
+    console.log("unlocked: ", unlocked);
+
     return(
         <>  
             <div className="home-menu">
@@ -53,8 +55,8 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
                 <h3>Welcome to</h3>
                 <h1>WHACK A MOLE !</h1>
                 <div className="select-mode-container">
-                    <button id='normal-mode' onClick={difficultyMode === 'normal' ? () => alert('Already selected') : () => loading('normal') }>NORMAL MODE</button>
-                    <button id={isDisabled ? 'hard-mode-disabled' : 'normal-mode'} onClick={() => setIsDisabled(true)}>HARD MODE</button>
+                    <button className='unlocked' style={difficultyMode === 'normal' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}} onClick={difficultyMode === 'normal' ? () => alert('Already selected') : () => loading('normal') }>NORMAL MODE</button>
+                    <button className={!unlocked ? 'locked' : 'unlocked'} style={difficultyMode === 'hard' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}}  onClick={difficultyMode === 'hard' ? () => alert('Already selected') : () => loading('hard') }>HARD MODE</button>
                 </div>
                 {isLoading && 
                 <>

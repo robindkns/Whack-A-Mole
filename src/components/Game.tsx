@@ -9,7 +9,8 @@ import HomeMenu from './HomeMenu';
 import EndingMenu from './EndingMenu';
 import { FaVolumeHigh } from "react-icons/fa6";
 import { FaVolumeXmark } from "react-icons/fa6";
-
+import { FaArrowLeft } from "react-icons/fa";
+import { changeMode } from '../redux/features/difficultySlice';
 
 export default function Game() {
 
@@ -56,10 +57,9 @@ export default function Game() {
         const timer = setInterval(() => {
             dispatch(decrementTimer());
         }, 1000);
-        // Stop timer when game is over
+        // Stop timer when game is over and play opening music
         if (isGameOver) {
             clearInterval(timer);
-
             if (gameMusicRef.current) {
                 gameMusicRef.current.pause();
             }
@@ -84,6 +84,10 @@ export default function Game() {
         
     }, [ gameStarted, isGameOver, dispatch]);
 
+    function backToHome() {
+        setGameStarted(false);
+        dispatch(changeMode(''))
+    }
     return(
         <>
             <div className='game'>
@@ -101,6 +105,11 @@ export default function Game() {
                 <>
                     <EndingMenu gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} />
                 </>
+                }
+                {gameStarted &&
+                    <div className="back-button">
+                        <FaArrowLeft onClick={backToHome} />
+                    </div>
                 }
                 <div className="volume-control">
                     <label htmlFor="volume-slider">{volume === 0 ? <FaVolumeXmark onClick={() => setVolume(0.10)} /> : <FaVolumeHigh onClick={() => setVolume(0)} />}</label>
