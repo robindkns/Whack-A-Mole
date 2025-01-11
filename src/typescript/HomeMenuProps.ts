@@ -4,4 +4,5 @@ export interface HomeMenuProps {
     setGameStarted: Dispatch<SetStateAction<boolean>>;
     gameMusicRef: RefObject<HTMLAudioElement | null>
     openingMusicRef: RefObject<HTMLAudioElement | null>
+    clickSoundRef: RefObject<HTMLAudioElement | null>
 }

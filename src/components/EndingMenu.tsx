@@ -7,7 +7,7 @@ import axios from 'axios';
 import NameInput from './InputName';
 import { MusicProps } from '../typescript/MusicProps';
 
-export default function EndingMenu({ gameMusicRef,openingMusicRef } : MusicProps) {
+export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef } : MusicProps) {
 
     const { score } = useSelector((state: RootState) => state.game);
     const [playerName, setPlayerName] = useState('');
@@ -17,6 +17,9 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef } : MusicProps
     console.log("actual name : " + playerName);
 
     const submitScore = async (name: string, score: number) => {
+        if (clickSoundRef.current) {
+            clickSoundRef.current.play();
+        }
         try {
             const response = await axios.post('/api/leaderboard', { name, score });
             if (response.status === 201) {
@@ -48,7 +51,7 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef } : MusicProps
         </div>
         }
         {showLeaderboard &&
-            <Leaderboard gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} />
+            <Leaderboard gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} />
         }
         </>
     );

@@ -17,12 +17,14 @@ export default function Game() {
     const { activeMole,score,timeLeft,isGameOver } = useSelector((state: RootState) => state.game);
     const dispatch = useDispatch();
 
-    // Références pour la musique
+    // Music related variables
+    const urlClickSound : string = require('../assets/sounds/SelectSound.mp3');
     const urlTitleTheme: string = require('../assets/sounds/TitleTheme.mp3');
     const urlGameMusic: string = require('../assets/sounds/GameMusic.mp3');
-    const [volume, setVolume] = useState(0.10);
+    const [volume, setVolume] = useState(0);
     const openingMusicRef = useRef<HTMLAudioElement | null>(null);
     const gameMusicRef = useRef<HTMLAudioElement | null>(null);
+    const clickSoundRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
         if (openingMusicRef.current) {
@@ -35,9 +37,8 @@ export default function Game() {
                 openingMusicRef.current.pause();
             }
         };
-    }, []);
+    }, [volume]);
 
-    // Ajuster le volume à chaque changement
     useEffect(() => {
         if (openingMusicRef.current) {
             openingMusicRef.current.volume = volume;
@@ -83,18 +84,19 @@ export default function Game() {
     return(
         <>
             <div className='game'>
+                <audio ref={clickSoundRef} src={urlClickSound} />
                 <audio ref={openingMusicRef} src={urlTitleTheme} loop />
                 <audio ref={gameMusicRef} src={urlGameMusic} loop />
 
                 {!gameStarted && 
-                    <HomeMenu setGameStarted={setGameStarted} gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} /> 
+                    <HomeMenu setGameStarted={setGameStarted} gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} /> 
                 }
                 {!isGameOver && gameStarted &&
                     <Board activeMole={activeMole} score={score} timeLeft={timeLeft} />
                 }
                 {isGameOver && gameStarted &&
                 <>
-                    <EndingMenu gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} />
+                    <EndingMenu gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} />
                 </>
                 }
                 <div className="volume-control">

@@ -6,7 +6,7 @@ import { resetGame } from "../redux/features/gameSlice";
 import Countdown from "./Countdown";
 import { MusicProps } from "../typescript/MusicProps";
 
-export default function Leaderboard( {gameMusicRef,openingMusicRef} : MusicProps) {
+export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef} : MusicProps) {
 
     const [leaderboard, setLeaderboard] = useState<any[]>([]);
     const [isStarted, setIsStarted] = useState(false);
@@ -23,11 +23,12 @@ export default function Leaderboard( {gameMusicRef,openingMusicRef} : MusicProps
 
     function playAgain() {
         setIsStarted(true);
-        // Arrêter la musique d'ouverture
+        if (clickSoundRef.current) {
+            clickSoundRef.current.play();
+        }
         if (openingMusicRef.current) {
             openingMusicRef.current.pause();
         }
-        // Jouer la musique du jeu
         if (gameMusicRef.current) {
             gameMusicRef.current.play();
         }
