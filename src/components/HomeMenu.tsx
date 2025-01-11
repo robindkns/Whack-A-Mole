@@ -35,10 +35,10 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
         if (clickSoundRef.current) {
             clickSoundRef.current.play();
         }
-        if (openingMusicRef.current) {
+        if (openingMusicRef.current) { // Stop opening music
             openingMusicRef.current.pause();
         }
-        if (gameMusicRef.current) {
+        if (gameMusicRef.current) { // Start game music
             gameMusicRef.current.play();
         }
         setIsStarted(true);
@@ -69,8 +69,8 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
                 <h3>Welcome to</h3>
                 <h1>WHACK A MOLE !</h1>
                 <div className="select-mode-container">
-                    <button className='unlocked' style={difficultyMode === 'normal' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}} onClick={difficultyMode === 'normal' ? () => alertMessage('Difficulty mode already selected') : () => loading('normal') } disabled={isLoading}>NORMAL MODE</button>
-                    <button className={!unlocked ? 'locked' : 'unlocked'} style={difficultyMode === 'hard' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}}  onClick={difficultyMode === 'hard' ? () => alertMessage('Difficulty mode already selected') : () => loading('hard') } disabled={!unlocked || isLoading}>HARD MODE</button>
+                    <button className={difficultyMode === "normal" ? 'unlocked selected' : 'unlocked'} onClick={difficultyMode === 'normal' ? () => alertMessage('Difficulty mode already selected') : () => loading('normal') } disabled={isLoading}>NORMAL MODE</button>
+                    <button className={!unlocked ? 'locked' : unlocked && difficultyMode === 'hard' ? 'unlocked selected' : 'unlocked'} style={difficultyMode === 'hard' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}}  onClick={difficultyMode === 'hard' ? () => alertMessage('Difficulty mode already selected') : () => loading('hard') } disabled={!unlocked || isLoading}>HARD MODE</button>
                 </div>
                 {isLoading && 
                 <>

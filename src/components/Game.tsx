@@ -31,15 +31,25 @@ export default function Game() {
     const gameMusicRef = useRef<HTMLAudioElement | null>(null);
     const clickSoundRef = useRef<HTMLAudioElement | null>(null);
 
+    console.log("gameStarted: ",gameStarted);
+    
+
     useEffect(() => {
-        if (openingMusicRef.current) {
+        if (openingMusicRef.current && !gameStarted) {
             openingMusicRef.current.volume = volume
             openingMusicRef.current.play().catch((err) => console.error(err));
+        }
+        if (gameMusicRef.current && gameStarted) {
+            gameMusicRef.current.volume = volume
+            gameMusicRef.current.play().catch((err) => console.error(err));
         }
 
         return () => {
             if (openingMusicRef.current) {
                 openingMusicRef.current.pause();
+            }
+            if (gameMusicRef.current) {
+                gameMusicRef.current.pause();
             }
         };
     }, [volume]);

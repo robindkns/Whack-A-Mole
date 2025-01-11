@@ -16,7 +16,7 @@ const difficultySlice = createSlice({
                 state.timeBetween = 1000;
             } else if (state.mode === 'hard') {
                 state.moles = 24;
-                state.timeBetween = 700;
+                state.timeBetween = 600;
             }
         },
         unlockingMode: (state) => {
