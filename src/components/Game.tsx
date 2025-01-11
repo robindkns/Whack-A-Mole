@@ -46,6 +46,9 @@ export default function Game() {
         if (gameMusicRef.current) {
             gameMusicRef.current.volume = volume;
         }
+        if (clickSoundRef.current) {
+            clickSoundRef.current.volume = volume;
+        }
     }, [volume]);
 
     useEffect(() => {

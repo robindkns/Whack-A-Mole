@@ -1,25 +1,29 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import '../styles/HomeMenu.sass';
 import { resetGame } from '../redux/features/gameSlice';
 import { HomeMenuProps } from '../typescript/HomeMenuProps';
 import { useState } from 'react';
 import Countdown from './Countdown';
+import { changeMode } from '../redux/features/difficultySlice';
+import { RootState } from '../redux/store';
 
 export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,clickSoundRef} : HomeMenuProps ) {
 
     const dispatch = useDispatch();
+    const difficultyMode = useSelector((state: RootState) => state.difficulty.mode);
     const [isDisabled, setIsDisabled] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
 
-    function loading() {
+    function loading(mode: string) {
         setIsLoading(true);
         if (clickSoundRef.current) {
             clickSoundRef.current.play();
         }
         setTimeout(() => {
             setIsLoading(false);
+            dispatch(changeMode(mode));
             setIsLoaded(true);
         }, 3000)
     }
@@ -49,7 +53,7 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
                 <h3>Welcome to</h3>
                 <h1>WHACK A MOLE !</h1>
                 <div className="select-mode-container">
-                    <button id='normal-mode' onClick={loading}>NORMAL MODE</button>
+                    <button id='normal-mode' onClick={difficultyMode === 'normal' ? () => alert('Already selected') : () => loading('normal') }>NORMAL MODE</button>
                     <button id={isDisabled ? 'hard-mode-disabled' : 'normal-mode'} onClick={() => setIsDisabled(true)}>HARD MODE</button>
                 </div>
                 {isLoading && 
