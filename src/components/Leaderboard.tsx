@@ -3,10 +3,12 @@ import '../styles/Leaderboard.sass'
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetGame } from "../redux/features/gameSlice";
+import Countdown from "./Countdown";
 
 export default function Leaderboard() {
 
     const [leaderboard, setLeaderboard] = useState<any[]>([]);
+    const [isStarted, setIsStarted] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,30 +20,34 @@ export default function Leaderboard() {
             .catch(error => console.error('Error when loading leaderboard datas.', error));
     }, []);
 
+    function playAgain() {
+        setIsStarted(true);
+        setTimeout(() => {
+            dispatch(resetGame());
+        }, 4000);
+    }
     return(
         <>
-            <h1>Leaderboard</h1>
-            <div className="leaderboard">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {leaderboard.map((player, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{player.name}</td>
-                                <td>{player.score}</td>
-                            </tr>
+            {!isStarted ? <>
+                <div className="leaderboard">
+                    <h1>WHACK A MOLE !</h1>
+                    <h3>Hall Of Fame</h3>
+                    <div className="highscores-container">
+                        {leaderboard.map((score, index) => (
+                            <div className="score" key={index} style={index === 0 ? { color: "#c78c1d" } : { color: "#363434" }}>
+                                <div className="score-header">
+                                    <span>{index + 1}</span>
+                                    <span>{score.name}</span>
+                                </div>
+                                <span>{score.score}</span>
+                            </div>
                         ))}
-                    </tbody>
-                </table>
-            </div>
-            <button onClick={() => dispatch(resetGame())}>Play Again</button>
+                    </div> 
+                    <button onClick={playAgain}>Play Again</button>
+                </div>
+                </> 
+                : <Countdown />
+            }
         </>
     )
 };

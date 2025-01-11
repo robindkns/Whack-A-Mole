@@ -28,12 +28,12 @@ export default function EndingMenu() {
             {!showLeaderboard && 
                 <>
                     <h1>Congratulations !</h1>
-                    <h2>Your score is {score} points !</h2>
-                    <div>
+                    <h3>Your score is {score} points !</h3>
+                    <div className='player-name'>
                         <span>Name : </span>
                         <input type="text" onChange={(e) => setPlayerName(e.target.value)} />
                     </div>
-                    <button onClick={() => submitScore(playerName, score)}>Submit</button>
+                    <button id='submit-button' onClick={() => submitScore(playerName, score)}>Submit</button>
                 </>
             }
             {showLeaderboard &&

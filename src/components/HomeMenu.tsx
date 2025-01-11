@@ -3,6 +3,7 @@ import '../styles/HomeMenu.sass';
 import { resetGame } from '../redux/features/gameSlice';
 import { HomeMenuProps } from '../typescript/HomeMenuProps';
 import { useState } from 'react';
+import Countdown from './Countdown';
 
 export default function HomeMenu( {setGameStarted} : HomeMenuProps ) {
 
@@ -10,6 +11,7 @@ export default function HomeMenu( {setGameStarted} : HomeMenuProps ) {
     const [isDisabled, setIsDisabled] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isStarted, setIsStarted] = useState(false);
 
     function loading() {
         setIsLoading(true);
@@ -20,13 +22,18 @@ export default function HomeMenu( {setGameStarted} : HomeMenuProps ) {
     }
 
     function startGame() {
-        dispatch(resetGame());
-        setGameStarted(true);
+        setIsStarted(true);
+        setTimeout(() => {
+            setGameStarted(true);
+            dispatch(resetGame());
+        }, 4000)
     }
 
     return(
         <>  
             <div className="home-menu">
+            {!isStarted ?
+            <>
                 <h3>Welcome to</h3>
                 <h1>WHACK A MOLE !</h1>
                 <div className="select-mode-container">
@@ -45,6 +52,7 @@ export default function HomeMenu( {setGameStarted} : HomeMenuProps ) {
                     </div>
                 </>}
                 {isLoaded && <button id='start-button' onClick={startGame}>START</button>}
+                </>: <Countdown />}
             </div>
         </>
     )

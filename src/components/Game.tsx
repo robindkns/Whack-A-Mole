@@ -7,6 +7,7 @@ import { setActiveMole, decrementTimer } from '../redux/features/gameSlice';
 import Board from './Board';
 import HomeMenu from './HomeMenu';
 import EndingMenu from './EndingMenu';
+import Leaderboard from './Leaderboard';
 
 export default function Game() {
 
@@ -45,7 +46,7 @@ export default function Game() {
     return(
         <>
             <div className='game'>
-                {!gameStarted && 
+                {/* {!gameStarted && 
                     <HomeMenu setGameStarted={setGameStarted} /> 
                 }
                 {!isGameOver && gameStarted &&
@@ -55,7 +56,9 @@ export default function Game() {
                 <>
                     <EndingMenu />
                 </>
-                }
+                } */}
+                <EndingMenu />
+                {/* <Leaderboard /> */}
             </div>
         </>
     )

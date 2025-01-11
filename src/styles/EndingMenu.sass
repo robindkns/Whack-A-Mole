@@ -1,5 +1,36 @@
+@import '../styles/variables.sass'
+
 .ending-container
     display: flex
     flex-direction: column
-    justify-content: center
     align-items: center
+    width: 100%
+    height: 100%
+    h1
+        margin-top: 5rem
+        font-size: 5.5rem
+        color: #c78c1d
+    h3
+        margin-top: 0.5rem
+        font-size: 2.5rem
+        color: $basic-black
+
+.player-name
+    display: flex
+    margin-top: 5rem
+    margin-bottom: 3rem
+    font-size: 2.5rem
+    color: $basic-black
+    font-weight: bold
+    gap: 1rem
+
+#submit-button
+    font-size: 2.5rem
+    font-weight: bold
+    cursor: pointer
+    border: none
+    background-color: transparent
+    transition: 0.3s
+    color: $basic-black
+    &:hover
+        transform: scale(1.1)
