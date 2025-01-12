@@ -1,0 +1,46 @@
+@import '../styles/variables.sass'
+    
+.arcade-screen 
+    height: 80%
+    width: 75%
+    position: relative
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1))
+    border-radius: 20px
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)
+    overflow: hidden
+    display: flex
+    align-items: center
+    justify-content: center
+    button
+        font-size: 3.5rem
+        color: $basic-gold
+        transition: 0.3s
+        background: transparent
+        border: none
+        &:hover
+            scale: 1.1
+            cursor: pointer
+
+.disappear
+    animation: disappear 0.2s forwards
+
+.blinking
+    animation: blinking 1s infinite
+
+
+// Animations
+
+@keyframes blinking
+    0%
+        opacity: 0
+    50%
+        opacity: 1
+    100%
+        opacity: 0
+
+@keyframes disappear
+    0%
+        opacity: 1
+    100%
+        opacity: 0
+

@@ -14,6 +14,7 @@
     overflow: hidden
     border-radius: 100px
     box-shadow: 0 0 20px rgb(240, 201, 122) 
+    animation: shadow-blinking 5s infinite
 
 .volume-control
     position: absolute
@@ -42,6 +43,16 @@
         font-size: 4rem
         &:hover
             cursor: pointer
+
+// Animations
+
+@keyframes shadow-blinking
+    0%
+        box-shadow: 0 0 20px rgb(240, 201, 122) 
+    50%
+        box-shadow: 0 0 40px rgb(240, 201, 122) 
+    100%
+        box-shadow: 0 0 20px rgb(240, 201, 122)
 
 // Responsive design
 

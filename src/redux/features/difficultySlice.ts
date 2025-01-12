@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const difficultySlice = createSlice({
     name: 'difficulty',
     initialState: {
-        mode : 'hard',
-        moles : 24,
+        mode : '',
+        moles : 0,
         timeBetween : 0,
         unlocked : false
     },
@@ -16,7 +16,7 @@ const difficultySlice = createSlice({
                 state.timeBetween = 1000;
             } else if (state.mode === 'hard') {
                 state.moles = 24;
-                state.timeBetween = 600;
+                state.timeBetween = 650;
             }
         },
         unlockingMode: (state) => {
