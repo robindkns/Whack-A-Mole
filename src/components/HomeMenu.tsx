@@ -8,7 +8,7 @@ import { changeMode } from '../redux/features/difficultySlice';
 import { RootState } from '../redux/store';
 import AlertBox from './ui/AlertBox';
 
-export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,clickSoundRef} : HomeMenuProps ) {
+export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,clickSoundRef,setGameMusicPlaying} : HomeMenuProps ) {
 
     const dispatch = useDispatch();
     const difficultyMode = useSelector((state: RootState) => state.difficulty.mode);
@@ -40,6 +40,7 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
         }
         if (gameMusicRef.current) { // Start game music
             gameMusicRef.current.play();
+            setGameMusicPlaying(true);
         }
         setIsStarted(true);
         setTimeout(() => {

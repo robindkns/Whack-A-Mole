@@ -23,6 +23,7 @@ export default function Game() {
     const timeBetween = useSelector((state: RootState) => state.difficulty.timeBetween);
 
     // Music related variables
+    const [gameMusicPlaying, setGameMusicPlaying] = useState(false);
     const urlClickSound : string = require('../assets/sounds/SelectSound.mp3');
     const urlTitleTheme: string = require('../assets/sounds/TitleTheme.mp3');
     const urlGameMusic: string = require('../assets/sounds/GameMusic.mp3');
@@ -31,25 +32,15 @@ export default function Game() {
     const gameMusicRef = useRef<HTMLAudioElement | null>(null);
     const clickSoundRef = useRef<HTMLAudioElement | null>(null);
 
-    console.log("gameStarted: ",gameStarted);
-    
-
     useEffect(() => {
-        if (openingMusicRef.current && !gameStarted) {
+        if (openingMusicRef.current && !gameMusicPlaying) {
             openingMusicRef.current.volume = volume
             openingMusicRef.current.play().catch((err) => console.error(err));
-        }
-        if (gameMusicRef.current && gameStarted) {
-            gameMusicRef.current.volume = volume
-            gameMusicRef.current.play().catch((err) => console.error(err));
         }
 
         return () => {
             if (openingMusicRef.current) {
                 openingMusicRef.current.pause();
-            }
-            if (gameMusicRef.current) {
-                gameMusicRef.current.pause();
             }
         };
     }, [volume]);
@@ -76,6 +67,7 @@ export default function Game() {
             clearInterval(timer);
             if (gameMusicRef.current) {
                 gameMusicRef.current.pause();
+                setGameMusicPlaying(false);
             }
             if (openingMusicRef.current) {
                 openingMusicRef.current.play();
@@ -100,6 +92,7 @@ export default function Game() {
 
     function backToHome() {
         setGameStarted(false);
+        setGameMusicPlaying(false);
         dispatch(changeMode(''))
     }
     return(
@@ -110,14 +103,14 @@ export default function Game() {
                 <audio ref={gameMusicRef} src={urlGameMusic} loop />
 
                 {!gameStarted && 
-                    <HomeMenu setGameStarted={setGameStarted} gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} /> 
+                    <HomeMenu setGameStarted={setGameStarted} gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} setGameMusicPlaying={setGameMusicPlaying} /> 
                 }
                 {!isGameOver && gameStarted &&
                     <Board activeMole={activeMole} score={score} timeLeft={timeLeft} />
                 }
                 {isGameOver && gameStarted &&
                 <>
-                    <EndingMenu gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} />
+                    <EndingMenu gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} setGameMusicPlaying={setGameMusicPlaying} />
                 </>
                 }
                 {gameStarted &&

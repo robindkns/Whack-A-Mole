@@ -6,7 +6,7 @@ import { resetGame } from "../redux/features/gameSlice";
 import Countdown from "./Countdown";
 import { EndGameProps } from "../typescript/EndGameProps";
 
-export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef} : EndGameProps) {
+export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef,setGameMusicPlaying} : EndGameProps) {
 
     const [leaderboard, setLeaderboard] = useState<any[]>([]);
     const [isStarted, setIsStarted] = useState(false);
@@ -31,6 +31,7 @@ export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef
         }
         if (gameMusicRef.current) {
             gameMusicRef.current.play();
+            setGameMusicPlaying(true);
         }
         setTimeout(() => {
             dispatch(resetGame());

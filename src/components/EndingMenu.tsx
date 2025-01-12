@@ -10,7 +10,7 @@ import { EndGameProps } from '../typescript/EndGameProps';
 import AlertBox from './ui/AlertBox';
 import { unlockingMode } from '../redux/features/difficultySlice';
 
-export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef } : EndGameProps) {
+export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef,setGameMusicPlaying } : EndGameProps) {
 
     const { score } = useSelector((state: RootState) => state.game);
     const [playerName, setPlayerName] = useState('');
@@ -77,7 +77,7 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef 
             </>
         }
         {showLeaderboard &&
-            <Leaderboard gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} />
+            <Leaderboard gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} setGameMusicPlaying={setGameMusicPlaying} />
         }
         </>
     );
