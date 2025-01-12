@@ -19,8 +19,8 @@ export default function Board( {activeMole,score,timeLeft,hitSoundRef}:BoardProp
     return (
         <>
             <div className="board-container">
-                <h1 className="score">Score : {score}</h1>
-                <h1 className="timer">Time Left : {formatTime(timeLeft)}</h1>
+                <span className="score">Score <br/> {score}</span>
+                <h1 className={timeLeft <= 10 ? "timer blinking" : "timer"} style={{ color: timeLeft <= 10 ? "red" : timeLeft <= 30 ? "#c78c1d" : "#363434" }}>{formatTime(timeLeft)}</h1>
                 <div className={mode === "normal" ? "board" : "board-hard"}>
                     {Array.from({ length: nbMoles }, (_, index) => (
                         <Mole key={index} id={index} isActive={activeMole === index} hitSoundRef={hitSoundRef} />
