@@ -40,10 +40,10 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef,
         try {
             const response = await axios.post('/api/leaderboard', { name, score });
             if (response.status === 201) {
-                setFadeOut(true);
                 setTimeout(() => {
-                    setShowLeaderboard(true);
-                },500)
+                    setFadeOut(true);
+                    setTimeout(() => setShowLeaderboard(true), 500);
+                }, 500); // Ajout d'un délai pour laisser le temps au Redux de se mettre à jour
             }
         } catch (error: any) {
             alertMessage(error.response?.data?.error || 'Unknown error when submitting score.');
