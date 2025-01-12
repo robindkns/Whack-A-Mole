@@ -28,7 +28,7 @@ export default function Game() {
     const urlTitleTheme: string = require('../assets/sounds/TitleTheme.mp3');
     const urlGameMusic: string = require('../assets/sounds/GameMusic.mp3');
     const urlHitSound: string = require('../assets/sounds/Hit.mp3');
-    const [volume, setVolume] = useState(0);
+    const [volume, setVolume] = useState(0.1);
     const openingMusicRef = useRef<HTMLAudioElement | null>(null);
     const gameMusicRef = useRef<HTMLAudioElement | null>(null);
     const clickSoundRef = useRef<HTMLAudioElement | null>(null);
