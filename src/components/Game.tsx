@@ -108,7 +108,7 @@ export default function Game() {
                 <audio ref={gameMusicRef} src={urlGameMusic} loop />
                 <audio ref={hitSoundRef} src={urlHitSound} />
 
-                {!gameStarted && 
+                {/* {!gameStarted && 
                     <HomeMenu setGameStarted={setGameStarted} gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} setGameMusicPlaying={setGameMusicPlaying} /> 
                 }
                 {!isGameOver && gameStarted &&
@@ -123,7 +123,8 @@ export default function Game() {
                     <div className="back-button">
                         <FaArrowLeft onClick={backToHome} />
                     </div>
-                }
+                } */}
+                <Board activeMole={activeMole} score={score} timeLeft={timeLeft} hitSoundRef={hitSoundRef} />
                 <div className="volume-control">
                     <label htmlFor="volume-slider">{volume === 0 ? <FaVolumeXmark onClick={() => setVolume(0.10)} /> : <FaVolumeHigh onClick={() => setVolume(0)} />}</label>
                 </div>

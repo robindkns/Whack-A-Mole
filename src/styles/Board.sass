@@ -46,4 +46,25 @@
     .board-hard
         width: 75%
 
-@media (max-width: 1024px)
+@media (max-width: 768px)
+    .score
+        font-size: 1.5rem
+        left: 10%
+    .timer
+        font-size: 1.5rem
+        right: 10%
+    .board
+        width: 75%
+    .board-hard
+        width: 85%
+
+@media (max-width: 500px)
+    .board
+        grid-template-rows: repeat(4, 1fr)
+        grid-template-columns: repeat(3, 1fr)
+        width: 90%
+        height: 50%
+    .board-hard
+        grid-template-rows: repeat(6, 1fr)
+        grid-template-columns: repeat(4, 1fr)
+        height: 65%
