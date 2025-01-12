@@ -1,9 +1,9 @@
 import axios from "axios"
-import '../styles/Leaderboard.sass'
+import '../styles/game/Leaderboard.sass'
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetGame } from "../redux/features/gameSlice";
-import Countdown from "./Countdown";
+import Countdown from "./ui/Countdown";
 import { EndGameProps } from "../typescript/EndGameProps";
 
 export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef,setGameMusicPlaying} : EndGameProps) {

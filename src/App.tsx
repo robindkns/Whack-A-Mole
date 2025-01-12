@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './styles/App.sass';
 
 import Game from './components/Game';
-import OldMonitor from './components/OldMonitor';
-import MonitorScreen from './components/MonitorScreen';
+import OldMonitor from './components/ui/OldMonitor';
+import MonitorScreen from './components/ui/MonitorScreen';
 
 function App() {
 

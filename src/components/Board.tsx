@@ -1,5 +1,5 @@
-import '../styles/Board.sass';
-import Mole from "./Mole";
+import '../styles/game/Board.sass';
+import Mole from "./ui/Mole";
 import { BoardProps } from "../typescript/BoardProps";
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';

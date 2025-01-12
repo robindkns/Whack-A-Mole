@@ -1,6 +1,6 @@
-import "../styles/InputName.sass";
+import "../../styles/ui/InputName.sass";
 import { useState, useEffect } from "react";
-import { NameInputProps } from "../typescript/NameInputProps";
+import { NameInputProps } from "../../typescript/NameInputProps";
 
 export default function NameInput({ playerName, setPlayerName }: NameInputProps) {
     const [inputValues, setInputValues] = useState<string[]>(['', '', '']); // Gère les 3 entrées de lettres

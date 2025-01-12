@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import '../styles/Countdown.sass'
+import '../../styles/ui/Countdown.sass'
 
 export default function Countdown() {
 

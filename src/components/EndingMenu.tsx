@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import '../styles/EndingMenu.sass'
+import '../styles/game/EndingMenu.sass'
 import { useDispatch, useSelector } from "react-redux";
 import Leaderboard from "./Leaderboard";
 import { RootState } from "../redux/store";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import NameInput from './InputName';
+import NameInput from './ui/InputName';
 import { EndGameProps } from '../typescript/EndGameProps';
 import AlertBox from './ui/AlertBox';
 import { unlockingMode } from '../redux/features/difficultySlice';

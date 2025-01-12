@@ -1,4 +1,4 @@
-import '../styles/OldMonitor.sass';
+import '../../styles/ui/OldMonitor.sass';
 
 export default function OldMonitor() {
     return (

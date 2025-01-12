@@ -1,7 +1,7 @@
-import '../styles/Mole.sass';
-import { MoleProps } from "../typescript/MoleProps";
+import '../../styles/ui/Mole.sass';
+import { MoleProps } from "../../typescript/MoleProps";
 import { useDispatch } from 'react-redux';
-import { incrementScore, setActiveMole } from '../redux/features/gameSlice';
+import { incrementScore, setActiveMole } from '../../redux/features/gameSlice';
 import { useEffect, useState } from 'react';
 
 export default function Mole({id,isActive,hitSoundRef}: MoleProps) {

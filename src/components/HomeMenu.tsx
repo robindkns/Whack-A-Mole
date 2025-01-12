@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import '../styles/HomeMenu.sass';
+import '../styles/game/HomeMenu.sass';
 import { resetGame } from '../redux/features/gameSlice';
 import { HomeMenuProps } from '../typescript/HomeMenuProps';
 import { useState } from 'react';
-import Countdown from './Countdown';
+import Countdown from './ui/Countdown';
 import { changeMode } from '../redux/features/difficultySlice';
 import { RootState } from '../redux/store';
 import AlertBox from './ui/AlertBox';

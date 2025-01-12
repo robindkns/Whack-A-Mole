@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/MonitorScreen.sass";
+import "../../styles/ui/MonitorScreen.sass";
 
 export default function MonitorScreen({ setIsGameON }: { setIsGameON: React.Dispatch<React.SetStateAction<boolean>> }) {
     

@@ -1,4 +1,4 @@
-import "../../styles/AlertBox.sass";
+import "../../styles/ui/AlertBox.sass";
 
 export default function AlertBox( { message }: { message: string } ) {
     return (
