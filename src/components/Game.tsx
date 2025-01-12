@@ -27,10 +27,12 @@ export default function Game() {
     const urlClickSound : string = require('../assets/sounds/SelectSound.mp3');
     const urlTitleTheme: string = require('../assets/sounds/TitleTheme.mp3');
     const urlGameMusic: string = require('../assets/sounds/GameMusic.mp3');
+    const urlHitSound: string = require('../assets/sounds/Hit.mp3');
     const [volume, setVolume] = useState(0);
     const openingMusicRef = useRef<HTMLAudioElement | null>(null);
     const gameMusicRef = useRef<HTMLAudioElement | null>(null);
     const clickSoundRef = useRef<HTMLAudioElement | null>(null);
+    const hitSoundRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
         if (openingMusicRef.current && !gameMusicPlaying) {
@@ -54,6 +56,9 @@ export default function Game() {
         }
         if (clickSoundRef.current) {
             clickSoundRef.current.volume = volume;
+        }
+        if (hitSoundRef.current) {
+            hitSoundRef.current.volume = volume;
         }
     }, [volume]);
 
@@ -101,12 +106,13 @@ export default function Game() {
                 <audio ref={clickSoundRef} src={urlClickSound} />
                 <audio ref={openingMusicRef} src={urlTitleTheme} loop />
                 <audio ref={gameMusicRef} src={urlGameMusic} loop />
+                <audio ref={hitSoundRef} src={urlHitSound} />
 
                 {!gameStarted && 
                     <HomeMenu setGameStarted={setGameStarted} gameMusicRef={gameMusicRef} openingMusicRef={openingMusicRef} clickSoundRef={clickSoundRef} setGameMusicPlaying={setGameMusicPlaying} /> 
                 }
                 {!isGameOver && gameStarted &&
-                    <Board activeMole={activeMole} score={score} timeLeft={timeLeft} />
+                    <Board activeMole={activeMole} score={score} timeLeft={timeLeft} hitSoundRef={hitSoundRef} />
                 }
                 {isGameOver && gameStarted &&
                 <>

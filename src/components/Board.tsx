@@ -4,7 +4,7 @@ import { BoardProps } from "../typescript/BoardProps";
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
-export default function Board( {activeMole,score,timeLeft}:BoardProps ) {
+export default function Board( {activeMole,score,timeLeft,hitSoundRef}:BoardProps ) {
     
     const nbMoles = useSelector((state: RootState) => state.difficulty.moles);
     const mode = useSelector((state: RootState) => state.difficulty.mode);
@@ -23,7 +23,7 @@ export default function Board( {activeMole,score,timeLeft}:BoardProps ) {
                 <h1 className="timer">Time Left : {formatTime(timeLeft)}</h1>
                 <div className={mode === "normal" ? "board" : "board-hard"}>
                     {Array.from({ length: nbMoles }, (_, index) => (
-                        <Mole key={index} id={index} isActive={activeMole === index} />
+                        <Mole key={index} id={index} isActive={activeMole === index} hitSoundRef={hitSoundRef} />
                     ))}
                 </div>
             </div>

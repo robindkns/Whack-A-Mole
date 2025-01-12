@@ -71,6 +71,7 @@
     background-color: transparent
     transition: 0.3s
     color: $basic-green
+    animation: zoom-in-out 1s infinite
     &:hover
         transform: scale(1.1)
 
@@ -93,3 +94,11 @@
         transform: translateY(-100%)
     100%
         transform: translateY(0)
+
+@keyframes zoom-in-out
+    0%
+        scale: 1
+    50%
+        scale: 1.1
+    100%
+        scale: 1
