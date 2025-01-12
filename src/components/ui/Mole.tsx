@@ -11,10 +11,10 @@ export default function Mole({id,isActive,hitSoundRef}: MoleProps) {
 
     const handleWhack = () => {
         if (isActive && !moleHit) {
-            console.log(`Mole ${id} whacked!`);
+            // console.log(`Mole ${id} whacked!`);
             if (hitSoundRef.current) {
-                hitSoundRef.current.currentTime = 0; // Remettre la lecture à zéro
-                hitSoundRef.current.play();         // Jouer le son
+                hitSoundRef.current.currentTime = 0; // Reset audio to play to avoid waiting it to be done before the next one
+                hitSoundRef.current.play();
             }
             dispatch(incrementScore());
             dispatch(setActiveMole(null));
@@ -22,6 +22,7 @@ export default function Mole({id,isActive,hitSoundRef}: MoleProps) {
         }
     };
 
+    // Handling mole hit's animation
     useEffect(() => {
         let timeout: NodeJS.Timeout;
         if (moleHit) {

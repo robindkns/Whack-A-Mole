@@ -3,17 +3,18 @@ import { useState, useEffect } from "react";
 import { NameInputProps } from "../../typescript/NameInputProps";
 
 export default function NameInput({ playerName, setPlayerName }: NameInputProps) {
-    const [inputValues, setInputValues] = useState<string[]>(['', '', '']); // Gère les 3 entrées de lettres
 
-    // Met à jour l'état parent avec les nouvelles valeurs lorsque l'utilisateur entre une lettre
+    const [inputValues, setInputValues] = useState<string[]>(['', '', '']);
+
+    // Update Player Name when letters are entered
     useEffect(() => {
-        setPlayerName(inputValues.join('')); // Met à jour le nom du joueur lorsque les 3 lettres sont saisies
+        setPlayerName(inputValues.join(''));
     }, [inputValues, setPlayerName]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const newValues = [...inputValues];
-        newValues[index] = e.target.value.toUpperCase(); // Met en majuscule la valeur
-        setInputValues(newValues); // Mise à jour des valeurs des entrées
+        newValues[index] = e.target.value.toUpperCase();
+        setInputValues(newValues);
     };
 
     return (

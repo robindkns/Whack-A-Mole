@@ -10,9 +10,12 @@ import AlertBox from './ui/AlertBox';
 
 export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,clickSoundRef,setGameMusicPlaying} : HomeMenuProps ) {
 
+    // Redux States
     const dispatch = useDispatch();
     const difficultyMode = useSelector((state: RootState) => state.difficulty.mode);
     const unlocked  = useSelector((state: RootState) => state.difficulty.unlocked);
+
+    // Local States
     const [isLoading, setIsLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isStarted, setIsStarted] = useState(false);

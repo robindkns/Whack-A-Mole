@@ -16,7 +16,7 @@ export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef
         axios.get('/api/leaderboard')
             .then(response => {
                 setLeaderboard(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => console.error('Error when loading leaderboard datas.', error));
     }, []);
@@ -37,6 +37,7 @@ export default function Leaderboard( {gameMusicRef,openingMusicRef,clickSoundRef
             dispatch(resetGame());
         }, 4000);
     }
+    
     return(
         <>
             {!isStarted ? <>

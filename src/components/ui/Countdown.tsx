@@ -13,7 +13,7 @@ export default function Countdown() {
         const timer = setInterval(() => {
             setCount((prev) => (prev !== null && prev > 0 ? prev - 1 : null));
         }, 1000);
-        return () => clearInterval(timer); // Nettoyer l'intervalle lorsque le composant est démonté
+        return () => clearInterval(timer);
         }
 
         setIsFinished(true);

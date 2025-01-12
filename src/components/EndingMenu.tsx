@@ -12,12 +12,15 @@ import { unlockingMode } from '../redux/features/difficultySlice';
 
 export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef,setGameMusicPlaying } : EndGameProps) {
 
+    // Redux States
     const { score } = useSelector((state: RootState) => state.game);
+    const hardModeUnlocked = useSelector((state: RootState) => state.difficulty.unlocked);
+    const dispatch = useDispatch();
+    
+    // Local States
     const [playerName, setPlayerName] = useState('');
     const [showLeaderboard, setShowLeaderboard] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
-    const hardModeUnlocked = useSelector((state: RootState) => state.difficulty.unlocked);
-    const dispatch = useDispatch();
     const [alertON, setAlertON] = useState(false);
     const [alertReason, setAlertReason] = useState('');
 
@@ -43,15 +46,11 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef,
                 setTimeout(() => {
                     setFadeOut(true);
                     setTimeout(() => setShowLeaderboard(true), 500);
-                }, 500); // Ajout d'un délai pour laisser le temps au Redux de se mettre à jour
+                }, 500); // Adding delay for Redux to update the leaderboard
             }
         } catch (error: any) {
             alertMessage(error.response?.data?.error || 'Unknown error when submitting score.');
         }
-    };
-
-    const handlePlayerNameChange = (name: string) => {
-        setPlayerName(name)
     };
 
     useEffect(() => {
@@ -71,7 +70,7 @@ export default function EndingMenu({ gameMusicRef,openingMusicRef,clickSoundRef,
                     <h1 id='ending-title'>Congratulations !</h1>
                     <h3>Your score is {score} points !</h3>
                     <p>Please enter your name :</p>
-                    <NameInput playerName={playerName} setPlayerName={handlePlayerNameChange} />
+                    <NameInput playerName={playerName} setPlayerName={setPlayerName} />
                     <button id='submit-button' onClick={() => submitScore(playerName, score)}>Submit</button>
                 </div>
             </>

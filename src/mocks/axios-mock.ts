@@ -11,7 +11,7 @@ mock.onGet('/api/leaderboard').reply(() => {
     const leaderboard = [...store.getState().leaderboard.data];
     leaderboard.sort((a, b) => b.score - a.score);
 
-    console.log('leaderboard from mock: ', leaderboard);
+    // console.log('leaderboard from mock: ', leaderboard);
     
     return [200, leaderboard];
 
@@ -33,7 +33,7 @@ mock.onPost('/api/leaderboard').reply((config) => {
 
     store.dispatch(addScore(newEntry));
 
-    console.log('Updated leaderboard in mock :', store.getState().leaderboard.data);
+    // console.log('Updated leaderboard in mock :', store.getState().leaderboard.data);
 
     return [201];
 });

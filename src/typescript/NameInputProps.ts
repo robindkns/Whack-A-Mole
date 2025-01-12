@@ -1,4 +1,4 @@
 export interface NameInputProps {
     playerName: string;
-    setPlayerName: (name: string) => void;
+    setPlayerName: React.Dispatch<React.SetStateAction<string>>
 }

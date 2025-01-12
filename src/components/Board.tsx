@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
 export default function Board( {activeMole,score,timeLeft,hitSoundRef}:BoardProps ) {
-    
+
+    // Redux States
     const nbMoles = useSelector((state: RootState) => state.difficulty.moles);
     const mode = useSelector((state: RootState) => state.difficulty.mode);
 

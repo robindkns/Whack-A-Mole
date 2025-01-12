@@ -62,6 +62,7 @@ export default function Game() {
         }
     }, [volume]);
 
+    // HANDLING TIMER
     useEffect(() => {
         // Decrement timer
         const timer = setInterval(() => {
@@ -82,6 +83,7 @@ export default function Game() {
         return () => clearInterval(timer);
     }, [isGameOver, dispatch]);
 
+    // HANDLING RNG FOR MOLES
     useEffect(() => {
         // Generate random mole
         if(!isGameOver){
@@ -95,11 +97,13 @@ export default function Game() {
         
     }, [ gameStarted, isGameOver, dispatch]);
 
+    // Back Home Button
     function backToHome() {
         setGameStarted(false);
         setGameMusicPlaying(false);
         dispatch(changeMode(''))
     }
+
     return(
         <>
             <div className='game'>
