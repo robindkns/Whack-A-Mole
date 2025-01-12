@@ -81,3 +81,23 @@
         background: linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))
         filter: blur(25px)
         z-index: -1
+
+// Responsive design
+
+@media (max-width: 1360px)
+    #border1
+        clip-path: polygon(30% 28%, 30% 73%, 0 100%, 0 0)
+        &::before
+            clip-path: polygon(30% 28%, 33% 73%, 0 100%, 0 0)
+    #border2
+        clip-path: polygon(30% 73%, 70% 73%, 100% 100%, 0 100%)
+        &::before
+            clip-path: polygon(30% 73%, 70% 73%, 100% 100%, 0 100%)
+    #border3
+        clip-path: polygon(70% 28%, 70% 73%, 100% 100%, 100% 0)
+        &::before
+            clip-path: polygon(70% 28%, 70% 73%, 100% 100%, 100% 0)
+    #border4
+        clip-path: polygon(70% 28%, 30% 28%, 0 0, 100% 0)
+        &::before
+            clip-path: polygon(70% 28%, 30% 28%, 0 0, 100% 0)

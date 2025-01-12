@@ -42,3 +42,28 @@
         font-size: 4rem
         &:hover
             cursor: pointer
+
+// Responsive design
+
+@media (max-width: 1024px)
+    .back-button svg
+        font-size: 3rem
+    .volume-control label svg
+        font-size: 3rem
+
+@media (max-width: 768px)
+    .game
+        height: 70%
+        width: 80%
+    .back-button
+        left: 8%
+        svg
+            font-size: 2rem
+    .volume-control 
+        right: 8%
+        label svg
+            font-size: 2rem
+
+@media (max-width: 530px)
+    .game
+        height: 75%

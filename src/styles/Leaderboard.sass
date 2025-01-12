@@ -47,8 +47,65 @@
     span
         width: 20%
 
+// Animations
+
 @keyframes fade-in-left
     0%
         transform: translateX(100%)
     100%
         transform: translateX(0)
+
+// Responsive design
+
+@media (max-width: 1800px)
+    .leaderboard h1
+        margin-top: 1rem
+        font-size: 5rem
+    .leaderboard h3
+        margin-top: 0
+        font-size: 2.5rem
+    .leaderboard button
+        font-size: 2.5rem
+    .highscores-container
+        font-size: 1.7rem
+
+@media (max-width: 1440px)
+    .highscores-container
+        margin-top: 0.5rem
+        font-size: 1.5rem
+    .leaderboard h3
+        font-size: 2rem
+    .leaderboard button
+        font-size: 2rem
+
+@media (max-width: 1024px)
+    .leaderboard h1
+        margin-top: 2rem
+        font-size: 4rem
+
+@media (max-width: 768px)
+    .leaderboard h1
+        font-size: 3rem
+    .leaderboard h3
+        font-size: 1.7rem
+    .leaderboard button
+        font-size: 1.7rem
+    .highscores-container
+        font-size: 1.4rem
+        width: 50%
+
+@media (max-width: 500px)
+    .leaderboard h1
+        margin-top: 7rem
+        font-size: 2rem
+    .leaderboard h3
+        margin-top: 1rem
+        margin-bottom: 1rem
+    .leaderboard button
+        margin-top: 1.5rem
+    .highscores-container
+        width: 55%
+    .highscore-header
+        width: 50%
+        span
+            width: 35%

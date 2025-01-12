@@ -65,26 +65,26 @@ export default function HomeMenu( {setGameStarted,gameMusicRef,openingMusicRef,c
         <>  
             {alertON && <AlertBox message={alertReason} />}
             <div className="home-menu">
-            {!isStarted ?
-            <>
-                <h3>Welcome to</h3>
-                <h1>WHACK A MOLE !</h1>
-                <div className="select-mode-container">
-                    <button className={difficultyMode === "normal" ? 'unlocked selected' : 'unlocked'} onClick={difficultyMode === 'normal' ? () => alertMessage('Difficulty mode already selected') : () => loading('normal') } disabled={isLoading}>NORMAL MODE</button>
-                    <button className={!unlocked ? 'locked' : unlocked && difficultyMode === 'hard' ? 'unlocked selected' : 'unlocked'} style={difficultyMode === 'hard' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}}  onClick={difficultyMode === 'hard' ? () => alertMessage('Difficulty mode already selected') : () => loading('hard') } disabled={!unlocked || isLoading}>HARD MODE</button>
-                </div>
-                {isLoading && 
+                {!isStarted ?
                 <>
-                    <div className='loader-container'>
-                        <div className="loader">
-                        <div></div>
-                        </div>
-                        <p>
-                            Loading <span id='dots'>...</span>
-                        </p>
+                    <h3>Welcome to</h3>
+                    <h1>WHACK A MOLE !</h1>
+                    <div className="select-mode-container">
+                        <button className={difficultyMode === "normal" ? 'unlocked selected' : 'unlocked'} onClick={difficultyMode === 'normal' ? () => alertMessage('Difficulty mode already selected') : () => loading('normal') } disabled={isLoading}>NORMAL MODE</button>
+                        <button className={!unlocked ? 'locked' : unlocked && difficultyMode === 'hard' ? 'unlocked selected' : 'unlocked'} style={difficultyMode === 'hard' ? {border: '2px solid #363434'} : {border: '2px solid #00000043'}}  onClick={difficultyMode === 'hard' ? () => alertMessage('Difficulty mode already selected') : () => loading('hard') } disabled={!unlocked || isLoading}>HARD MODE</button>
                     </div>
-                </>}
-                {isLoaded && !isLoading && <button id='start-button' onClick={startGame}>START</button>}
+                    {isLoading && 
+                    <>
+                        <div className='loader-container'>
+                            <div className="loader">
+                            <div></div>
+                            </div>
+                            <p>
+                                Loading <span id='dots'>...</span>
+                            </p>
+                        </div>
+                    </>}
+                    {isLoaded && !isLoading && <button id='start-button' onClick={startGame}>START</button>}
                 </>: <Countdown />}
             </div>
         </>

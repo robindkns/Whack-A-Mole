@@ -34,6 +34,8 @@
     &:hover
         transform: scale(1.1)
 
+// Animations
+
 @keyframes appearZoom
     0%
         scale: 0
@@ -45,3 +47,39 @@
         transform: translateX(0)
     100%
         transform: translateX(-100%)
+
+// Responsive design
+
+@media (max-width: 1800px)
+    .ending-container p
+        margin-top: 1.5rem
+    #submit-button
+        margin-top: 5rem
+
+@media (max-width: 1440px)
+    #ending-title
+        font-size: 4.5rem
+        margin-top: 3rem
+
+@media (max-width: 768px)
+    #ending-title
+        font-size: 3.5rem
+    .ending-container h3
+        font-size: 2rem
+    .ending-container p
+        font-size: 1.5rem
+    #submit-button
+        margin-top: 3rem
+        font-size: 2rem
+
+@media (max-width: 500px)
+    #ending-title
+        margin-top: 10rem
+        font-size: 2rem
+    .ending-container h3
+        font-size: 1.5rem
+    .ending-container p
+        font-size: 1.3rem
+    #submit-button
+        margin-top: 3rem
+        font-size: 2rem
